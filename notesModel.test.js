@@ -1,12 +1,18 @@
 const NotesModel = require("./notesModel");
 
 describe("Peeps model class", () => {
-  it("returns an empty list of peeps", () => {});
-  const model = new NotesModel();
-  expect(model.getNotes()).toEqual([]);
-});
+  it("returns an empty list of peeps", () => {
+    const model = new NotesModel();
+    expect(model.getNotes()).toEqual([]);                                                                                                                    
+  });
 
-// const model = new NotesModel();
+  it("adds a note to the list of notes", () => {
+    const model = new NotesModel();
+    model.addNote("Buy oat milk");
+    model.addNote("Walk the dog");
+    expect(model.getNotes()).toEqual(["Buy oat milk", "Walk the dog"]);
+  });
+});
 
 // model.getNotes(); // should return []
 
