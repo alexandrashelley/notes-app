@@ -45,4 +45,26 @@ describe("the notes view page", () => {
       "This note was added with a button click"
     );
   });
+
+  it("clicking the button only displays newly added note", () => {
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    model.addNote("An older note");
+
+    const inputEl = document.querySelector("#note-input");
+    inputEl.value = "No duplicate notes to be shown please";
+
+    const buttonEl = document.querySelector("#add-note-button");
+    buttonEl.click();
+
+    expect(document.querySelectorAll(".note-item").length).toBe(2);
+    expect(document.querySelector(".note-item")).not.toBeNull();
+    expect(document.querySelectorAll(".note-item")[0].textContent).toBe(
+      "An older note"
+    );
+    expect(document.querySelectorAll(".note-item")[1].textContent).toBe(
+      "No duplicate notes to be shown please"
+    );
+  });
 });

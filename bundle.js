@@ -36,6 +36,7 @@
           this.buttonEl = document.querySelector("#add-note-button");
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", () => {
+            this.clearNotes();
             this.addNewNote();
             this.displayNotes();
           });
