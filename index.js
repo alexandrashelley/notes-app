@@ -7,3 +7,4 @@ console.log('The notes app is running')
 
 model.addNote("I'm viewing this note with the displayNotes function")
 view.displayNotes();
+view.clearNotes();

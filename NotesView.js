@@ -10,8 +10,15 @@ class NotesView {
     this.model.getNotes().forEach((note) => {
       const noteParagraph = document.createElement("p");
       noteParagraph.className = "note-item";
-      noteParagraph.innerText = note
+      noteParagraph.innerText = note;
       this.mainContainerEl.append(noteParagraph);
+    });
+  }
+
+  clearNotes() {
+    const elementToRemove = document.querySelectorAll(".note-item");
+    elementToRemove.forEach((note) => {
+      note.remove();
     });
   }
 }
