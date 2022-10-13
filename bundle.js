@@ -39,6 +39,7 @@
             this.clearNotes();
             this.addNewNote();
             this.displayNotes();
+            this.inputEl.value = null;
           });
         }
         displayNotes() {

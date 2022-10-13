@@ -67,4 +67,17 @@ describe("the notes view page", () => {
       "No duplicate notes to be shown please"
     );
   });
+
+  it("clears input after clicking button", () => {
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    const inputEl = document.querySelector("#note-input");
+    inputEl.value = "Clear the input field please";
+
+    const buttonEl = document.querySelector("#add-note-button");
+    buttonEl.click();
+
+    expect(inputEl.value).toBe("");
+  });
 });
