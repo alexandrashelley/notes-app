@@ -33,12 +33,18 @@
         constructor(model3) {
           this.model = model3;
           this.mainContainerEl = document.querySelector("#main-container");
+          this.buttonEl = document.querySelector("#add-note-button");
+          this.inputEl = document.querySelector("#note-input");
+          this.buttonEl.addEventListener("click", () => {
+            this.addNewNote();
+            this.displayNotes();
+          });
         }
         displayNotes() {
           this.model.getNotes().forEach((note) => {
             const noteParagraph = document.createElement("p");
             noteParagraph.className = "note-item";
-            noteParagraph.innerText = note;
+            noteParagraph.textContent = note;
             this.mainContainerEl.append(noteParagraph);
           });
         }
@@ -47,6 +53,9 @@
           elementToRemove.forEach((note) => {
             note.remove();
           });
+        }
+        addNewNote() {
+          this.model.addNote(this.inputEl.value);
         }
       };
       module.exports = NotesView2;
@@ -61,5 +70,4 @@
   console.log("The notes app is running");
   model.addNote("I'm viewing this note with the displayNotes function");
   view.displayNotes();
-  view.clearNotes();
 })();
