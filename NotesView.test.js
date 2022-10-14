@@ -4,6 +4,7 @@
 
 const fs = require("fs");
 const NotesModel = require("./NotesModel");
+const NotesApi = require("./NotesApi");
 const NotesView = require("./NotesView");
 
 describe("the notes view page", () => {
@@ -79,5 +80,22 @@ describe("the notes view page", () => {
     buttonEl.click();
 
     expect(inputEl.value).toBe("");
+  });
+
+  xit("displays notes from the API", () => {
+    const model = new NotesModel();
+    const api = new NotesApi();
+    const view = new NotesView(model, api);
+
+    fetch.mockResponseOnce(JSON.stringify({
+      name: "This is a note from the API",
+      id: 123
+    }));
+
+    api.loadNotes();
+    model.setNotes(notes);
+    view.displayNotes();
+
+
   });
 });

@@ -19,4 +19,13 @@ describe("Peeps model class", () => {
     model.reset();
     expect(model.getNotes()).toEqual([]);
   });
+
+  it("sets the api notes", () => {
+    const model = new NotesModel();
+    const apiNotes = ["Test note from the API"]
+    model.setNotes(apiNotes);
+    expect(model.getNotes()).toEqual(["Test note from the API"])
+  })
+
+
 });

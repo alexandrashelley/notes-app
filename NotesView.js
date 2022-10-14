@@ -1,8 +1,10 @@
 const model = require("./NotesModel");
+const api = require("./NotesApi");
 
 class NotesView {
-  constructor(model) {
+  constructor(model, api) {
     this.model = model;
+    this.api = api
     this.mainContainerEl = document.querySelector("#main-container");
     this.buttonEl = document.querySelector("#add-note-button");
     this.inputEl = document.querySelector("#note-input");
