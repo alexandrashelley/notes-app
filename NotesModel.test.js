@@ -25,7 +25,5 @@ describe("Peeps model class", () => {
     const apiNotes = ["Test note from the API"]
     model.setNotes(apiNotes);
     expect(model.getNotes()).toEqual(["Test note from the API"])
-  })
-
-
+  });
 });
