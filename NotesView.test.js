@@ -7,6 +7,8 @@ const NotesModel = require("./NotesModel");
 const NotesApi = require("./NotesApi");
 const NotesView = require("./NotesView");
 
+require("jest-fetch-mock").enableMocks();
+
 describe("the notes view page", () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync("./index.html");
@@ -82,20 +84,24 @@ describe("the notes view page", () => {
     expect(inputEl.value).toBe("");
   });
 
-  xit("displays notes from the API", () => {
+  it("displays notes from the API", () => {
     const model = new NotesModel();
-    const api = new NotesApi();
-    const view = new NotesView(model, api);
 
-    fetch.mockResponseOnce(JSON.stringify({
-      name: "This is a note from the API",
-      id: 123
-    }));
+    const mockApi = {
+      loadNotes: (callback) =>
+        callback(["This is a test note", "This is another test note"]),
+    };
 
-    api.loadNotes();
-    model.setNotes(notes);
-    view.displayNotes();
+    const view = new NotesView(model, mockApi);
 
+    view.displayNotesFromApi();
 
+    expect(document.querySelectorAll(".note-item").length).toEqual(2);
+    expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
+      "This is a test note"
+    );
+    expect(document.querySelectorAll(".note-item")[1].textContent).toEqual(
+      "This is another test note"
+    );
   });
 });
