@@ -6,7 +6,6 @@ class NotesApi {
   }
 
   async createNote(note) {
-    console.log(fetch);
     const response = await fetch("http://localhost:3000/notes", {
       method: "POST",
       headers: {

@@ -36,7 +36,6 @@
           fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => callback(data));
         }
         async createNote(note) {
-          console.log(fetch);
           const response = await fetch("http://localhost:3000/notes", {
             method: "POST",
             headers: {
@@ -64,11 +63,15 @@
           this.api = api3;
           this.mainContainerEl = document.querySelector("#main-container");
           this.buttonEl = document.querySelector("#add-note-button");
+          this.deleteButtonEl = document.querySelector("#delete-note-button");
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", () => {
             this.addNewNote(this.inputEl.value);
             this.inputEl.value = "";
             this.displayNotes();
+          });
+          this.deleteButtonEl.addEventListener("click", () => {
+            this.clearNotes();
           });
         }
         displayNotes() {

@@ -23,11 +23,15 @@ describe("the notes view page", () => {
     expect(document.querySelectorAll(".note-item").length).toBe(1);
   });
 
-  it("clears the list of notes from the page", () => {
+  it("clicking the delete button clears the list of notes from the page", () => {
     const model = new NotesModel();
     const view = new NotesView(model);
-    model.addNote("This is a note to be cleared");
-    view.clearNotes();
+
+    const inputEl = document.querySelector("#note-input");
+    inputEl.value = "I'm going to delete this note";
+
+    const buttonEl = document.querySelector("#delete-note-button");
+    buttonEl.click();
 
     expect(document.querySelectorAll(".note-item").length).toBe(0);
   });
@@ -135,7 +139,7 @@ describe("the notes view page", () => {
     );
   });
 
-  it("displays notes that have been posted to the API", () => {
+  it("displays notes that have been posted to the Api", () => {
     const model = new NotesModel();
 
     const mockApi = {
