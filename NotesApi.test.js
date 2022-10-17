@@ -8,16 +8,16 @@ describe("the API class", () => {
 
     fetch.mockResponseOnce(
       JSON.stringify({
-        name: "This is a note from the Api",
+        content: "This is a note from the Api",
       })
     );
 
     api.loadNotes((returnedDataFromApi) => {
-      expect(returnedDataFromApi.name).toBe("This is a note from the Api");
+      expect(returnedDataFromApi.content).toBe("This is a note from the Api");
     });
   });
 
-  it("posts a new note to the server and saves it", () => {
+  it("posts a new note to the server and saves it", async () => {
     const api = new Api();
     const note = "This note was successfully saved on the Api";
 
@@ -27,8 +27,9 @@ describe("the API class", () => {
       })
     );
 
-    api.createNote(note);
+    const createdNote = await api.createNote(note);
 
-    fetch.mockResponseOnce();
+    console.log(createdNote)
+    expect(createdNote.content).toBe("This note was successfully saved on the Api")
   });
 });

@@ -5,8 +5,9 @@ class NotesApi {
       .then((data) => callback(data));
   }
 
-  createNote(note) {
-    fetch("http://localhost:3000/notes", {
+  async createNote(note) {
+    console.log(fetch);
+    const response = await fetch("http://localhost:3000/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,9 +15,9 @@ class NotesApi {
       body: JSON.stringify({
         content: note,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    });
+
+    return response.json();
   }
 }
 

@@ -104,4 +104,22 @@ describe("the notes view page", () => {
       "This is another test note"
     );
   });
+
+  xit("displays newly saved notes that have been posted to the API", () => {
+    const model = new NotesModel();
+    const note = { content: "This note comes from the server" };
+
+    const mockApi = {
+      createNote: () => note,
+    };
+
+    const view = new NotesView(model, mockApi);
+
+    view.displayNotesFromApi();
+
+    expect(document.querySelectorAll(".note-item").length).toEqual(1);
+    expect(document.querySelectorAll(".note-item").textContent).toEqual(
+      "This note comes from the server"
+    );
+  });
 });
