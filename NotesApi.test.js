@@ -17,7 +17,7 @@ describe("the API class", () => {
     });
   });
 
-  it("posts a new note to the server and saves it", async () => {
+  it("returns note that was posted to the server", async () => {
     const api = new Api();
     const note = "This note was successfully saved on the Api";
 
