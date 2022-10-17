@@ -144,9 +144,7 @@ describe("the notes view page", () => {
 
     const mockApi = {
       createNote: jest.fn(),
-      loadNotes: (callback) => {
-        callback(["This note was already in the server"]);
-      },
+      loadNotes: jest.fn(),
     };
 
     const view = new NotesView(model, mockApi);
@@ -158,12 +156,9 @@ describe("the notes view page", () => {
 
     view.displayNotesFromApi();
 
-    expect(document.querySelectorAll(".note-item").length).toEqual(2);
+    expect(document.querySelectorAll(".note-item").length).toEqual(1);
     expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
       "This note was posted"
-    );
-    expect(document.querySelectorAll(".note-item")[1].textContent).toEqual(
-      "This note was already in the server"
     );
   });
 });
