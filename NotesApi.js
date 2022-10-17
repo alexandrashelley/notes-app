@@ -4,13 +4,20 @@ class NotesApi {
       .then((response) => response.json())
       .then((data) => callback(data));
   }
+
+  createNote(note) {
+    fetch("http://localhost:3000/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: note,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }
 }
 
 module.exports = NotesApi;
-
-
-
-// loadNotes takes a callback function which means we can grab 
-// the data from the fetch and do stuff with it in another function
-// hence the final .then which turns data into a callback with
-// a function

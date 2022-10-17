@@ -7,4 +7,6 @@ const view = new NotesView(model, api);
 
 console.log('The notes app is running')
 
+
+api.createNote("Saved note")
 view.displayNotesFromApi();
