@@ -66,7 +66,7 @@ describe("the notes view page", () => {
   it("clicking the button only displays newly added note", () => {
     const model = new NotesModel();
 
-     const mockApi = {
+    const mockApi = {
       createNote: () => {
         return { content: "This note was saved" };
       },

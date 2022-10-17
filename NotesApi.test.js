@@ -29,6 +29,8 @@ describe("the API class", () => {
 
     const createdNote = await api.createNote(note);
 
-    expect(createdNote.content).toBe("This note was successfully saved on the Api")
+    expect(createdNote.content).toBe(
+      "This note was successfully saved on the Api"
+    );
   });
 });

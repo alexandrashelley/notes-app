@@ -18,7 +18,7 @@ class NotesView {
 
     this.deleteButtonEl.addEventListener("click", () => {
       this.clearNotes();
-    })
+    });
   }
 
   displayNotes() {
