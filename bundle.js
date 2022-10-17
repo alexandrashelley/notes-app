@@ -66,10 +66,9 @@
           this.buttonEl = document.querySelector("#add-note-button");
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", () => {
-            this.clearNotes();
-            this.addNewNote();
+            this.addNewNote(this.inputEl.value);
+            this.inputEl.value = "";
             this.displayNotes();
-            this.inputEl.value = null;
           });
         }
         displayNotes() {
@@ -86,8 +85,9 @@
             note.remove();
           });
         }
-        addNewNote() {
-          this.model.addNote(this.inputEl.value);
+        addNewNote(note) {
+          this.model.addNote(note);
+          this.api.createNote(note);
         }
         displayNotesFromApi() {
           this.api.loadNotes((noteData) => {
@@ -108,6 +108,5 @@
   var api = new NotesApi();
   var view = new NotesView(model, api);
   console.log("The notes app is running");
-  api.createNote("Saved note");
   view.displayNotesFromApi();
 })();

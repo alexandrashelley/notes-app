@@ -34,7 +34,17 @@ describe("the notes view page", () => {
 
   it("clicking the button adds a new note", () => {
     const model = new NotesModel();
-    const view = new NotesView(model);
+
+    const mockApi = {
+      createNote: () => {
+        return { content: "This note was saved" };
+      },
+      loadNotes: (callback) => {
+        callback(["This note was saved"]);
+      },
+    };
+
+    const view = new NotesView(model, mockApi);
 
     const inputEl = document.querySelector("#note-input");
     inputEl.value = "This note was added with a button click";
@@ -51,7 +61,17 @@ describe("the notes view page", () => {
 
   it("clicking the button only displays newly added note", () => {
     const model = new NotesModel();
-    const view = new NotesView(model);
+
+     const mockApi = {
+      createNote: () => {
+        return { content: "This note was saved" };
+      },
+      loadNotes: (callback) => {
+        callback(["This note was saved"]);
+      },
+    };
+
+    const view = new NotesView(model, mockApi);
 
     model.addNote("An older note");
 
@@ -73,7 +93,17 @@ describe("the notes view page", () => {
 
   it("clears input after clicking button", () => {
     const model = new NotesModel();
-    const view = new NotesView(model);
+
+    const mockApi = {
+      createNote: () => {
+        return { content: "This note was saved" };
+      },
+      loadNotes: (callback) => {
+        callback(["This note was saved"]);
+      },
+    };
+
+    const view = new NotesView(model, mockApi);
 
     const inputEl = document.querySelector("#note-input");
     inputEl.value = "Clear the input field please";
@@ -105,12 +135,16 @@ describe("the notes view page", () => {
     );
   });
 
-  xit("displays newly saved notes that have been posted to the API", () => {
+  it("displays notes that have been posted to the API", () => {
     const model = new NotesModel();
-    const note = { content: "This note comes from the server" };
 
     const mockApi = {
-      createNote: () => note,
+      createNote: () => {
+        return { content: "This note was saved" };
+      },
+      loadNotes: (callback) => {
+        callback(["This note was saved"]);
+      },
     };
 
     const view = new NotesView(model, mockApi);
@@ -118,8 +152,8 @@ describe("the notes view page", () => {
     view.displayNotesFromApi();
 
     expect(document.querySelectorAll(".note-item").length).toEqual(1);
-    expect(document.querySelectorAll(".note-item").textContent).toEqual(
-      "This note comes from the server"
+    expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
+      "This note was saved"
     );
   });
 });
