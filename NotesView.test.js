@@ -143,21 +143,27 @@ describe("the notes view page", () => {
     const model = new NotesModel();
 
     const mockApi = {
-      createNote: () => {
-        return { content: "This note was saved" };
-      },
+      createNote: jest.fn(),
       loadNotes: (callback) => {
-        callback(["This note was saved"]);
+        callback(["This note was already in the server"]);
       },
     };
 
     const view = new NotesView(model, mockApi);
+    const inputEl = document.querySelector("#note-input");
+    const buttonEl = document.querySelector("#add-note-button");
+    inputEl.value = "This note was posted";
+    buttonEl.click();
+    expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted");
 
     view.displayNotesFromApi();
 
-    expect(document.querySelectorAll(".note-item").length).toEqual(1);
+    expect(document.querySelectorAll(".note-item").length).toEqual(2);
     expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
-      "This note was saved"
+      "This note was posted"
+    );
+    expect(document.querySelectorAll(".note-item")[1].textContent).toEqual(
+      "This note was already in the server"
     );
   });
 });
