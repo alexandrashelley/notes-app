@@ -162,7 +162,7 @@ describe("the notes view page", () => {
     );
   });
 
-  it("displays an error if the network fails", () => {
+  it("displays an error message on the page", () => {
     const model = new NotesModel();
     const api = new NotesApi();
 

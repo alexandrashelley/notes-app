@@ -43,10 +43,15 @@ class NotesView {
   }
 
   displayNotesFromApi() {
-    this.api.loadNotes((noteData) => {
-      this.model.setNotes(noteData);
-      this.displayNotes();
-    });
+    this.api.loadNotes(
+      (noteData) => {
+        this.model.setNotes(noteData);
+        this.displayNotes();
+      },
+      () => {
+        this.displayError();
+      }
+    );
   }
 
   displayError() {

@@ -1,8 +1,14 @@
 class NotesApi {
-  loadNotes(callback) {
+  loadNotes(callback, callbackError) {
     fetch("http://localhost:3000/notes")
       .then((response) => response.json())
-      .then((data) => callback(data));
+      .then((data) => {
+        callback(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        callbackError(error);
+      });
   }
 
   async createNote(note) {
