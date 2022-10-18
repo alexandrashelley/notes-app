@@ -144,7 +144,7 @@ describe("the notes view page", () => {
 
     const mockApi = {
       createNote: jest.fn(() => {
-        return "This note was posted"
+        return "This note was posted";
       }),
       loadNotes: jest.fn(),
     };
@@ -154,11 +154,24 @@ describe("the notes view page", () => {
     const buttonEl = document.querySelector("#add-note-button");
     inputEl.value = "This note was posted";
     buttonEl.click();
-    // expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted");
+    expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted");
 
     expect(document.querySelectorAll(".note-item").length).toEqual(1);
     expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
       "This note was posted"
+    );
+  });
+
+  it("displays an error if the network fails", () => {
+    const model = new NotesModel();
+    const api = new NotesApi();
+
+    const view = new NotesView(model, api);
+
+    view.displayError();
+
+    expect(document.querySelector("#error-message").textContent).toBe(
+      "Oops! Something went wrong"
     );
   });
 });

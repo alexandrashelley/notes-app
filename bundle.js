@@ -98,6 +98,12 @@
             this.displayNotes();
           });
         }
+        displayError() {
+          const errorMessage = document.createElement("p");
+          errorMessage.id = "error-message";
+          errorMessage.textContent = "Oops! Something went wrong";
+          this.mainContainerEl.append(errorMessage);
+        }
       };
       module.exports = NotesView2;
     }
