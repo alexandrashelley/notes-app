@@ -33,10 +33,9 @@
     "NotesApi.js"(exports, module) {
       var NotesApi2 = class {
         loadNotes(callback, callbackError) {
-          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+          return fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
             callback(data);
           }).catch((error) => {
-            console.log(error);
             callbackError(error);
           });
         }
@@ -98,7 +97,7 @@
           this.api.createNote(note);
         }
         displayNotesFromApi() {
-          this.api.loadNotes(
+          return this.api.loadNotes(
             (noteData) => {
               this.model.setNotes(noteData);
               this.displayNotes();

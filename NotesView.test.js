@@ -13,6 +13,10 @@ describe("the notes view page", () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync("./index.html");
   });
+  // let spy;
+  // beforeAll(() => {
+  //   spy = jest.spyOn(document, "getElementById");
+  // });
 
   it("displays a note on the page", () => {
     const model = new NotesModel();
@@ -169,6 +173,20 @@ describe("the notes view page", () => {
     const view = new NotesView(model, api);
 
     view.displayError();
+
+    expect(document.querySelector("#error-message").textContent).toBe(
+      "Oops! Something went wrong"
+    );
+  });
+
+  fit("displays the error message if the network has failed to fetch notes", async () => {
+    const model = new NotesModel();
+    const api = new NotesApi();
+    const view = new NotesView(model, api);
+
+    fetch.mockImplementationOnce(() => Promise.reject("API is down"));
+
+    await view.displayNotesFromApi();
 
     expect(document.querySelector("#error-message").textContent).toBe(
       "Oops! Something went wrong"
