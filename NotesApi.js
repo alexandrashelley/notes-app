@@ -1,6 +1,6 @@
 class NotesApi {
-  loadNotes(callback, callbackError) {
-    return fetch("http://localhost:3000/notes")
+  async loadNotes(callback, callbackError) {
+    await fetch("http://localhost:3000/notes")
       .then((response) => response.json())
       .then((data) => {
         callback(data);

@@ -32,8 +32,8 @@
   var require_NotesApi = __commonJS({
     "NotesApi.js"(exports, module) {
       var NotesApi2 = class {
-        loadNotes(callback, callbackError) {
-          return fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+        async loadNotes(callback, callbackError) {
+          await fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
             callback(data);
           }).catch((error) => {
             callbackError(error);
