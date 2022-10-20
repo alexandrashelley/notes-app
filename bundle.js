@@ -33,11 +33,13 @@
     "NotesApi.js"(exports, module) {
       var NotesApi2 = class {
         async loadNotes(callback, callbackError) {
-          await fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
-            callback(data);
-          }).catch((error) => {
+          try {
+            await fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+              callback(data);
+            });
+          } catch (error) {
             callbackError(error);
-          });
+          }
         }
         async createNote(note, callbackError) {
           try {
