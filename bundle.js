@@ -39,7 +39,7 @@
             callbackError(error);
           });
         }
-        async createNote(note) {
+        async createNote(note, callbackError) {
           const response = await fetch("http://localhost:3000/notes", {
             method: "POST",
             headers: {
@@ -70,6 +70,7 @@
           this.deleteButtonEl = document.querySelector("#delete-note-button");
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", () => {
+            this.clearNotes();
             this.addNewNote(this.inputEl.value);
             this.inputEl.value = "";
             this.displayNotes();

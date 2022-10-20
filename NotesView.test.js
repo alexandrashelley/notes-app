@@ -71,28 +71,26 @@ describe("the notes view page", () => {
     const model = new NotesModel();
 
     const mockApi = {
-      createNote: () => {
-        return { content: "This note was saved" };
-      },
-      loadNotes: (callback) => {
-        callback(["This note was saved"]);
-      },
+      createNote: jest.fn(),
+      loadNotes: jest.fn(),
     };
 
     const view = new NotesView(model, mockApi);
 
-    model.addNote("An older note");
-
     const inputEl = document.querySelector("#note-input");
-    inputEl.value = "No duplicate notes to be shown please";
+    inputEl.value = "First note";
 
     const buttonEl = document.querySelector("#add-note-button");
     buttonEl.click();
 
+    inputEl.value = "No duplicate notes to be shown please";
+    buttonEl.click();
+
     expect(document.querySelectorAll(".note-item").length).toBe(2);
     expect(document.querySelector(".note-item")).not.toBeNull();
+  
     expect(document.querySelectorAll(".note-item")[0].textContent).toBe(
-      "An older note"
+      "First note"
     );
     expect(document.querySelectorAll(".note-item")[1].textContent).toBe(
       "No duplicate notes to be shown please"
@@ -179,7 +177,7 @@ describe("the notes view page", () => {
     );
   });
 
-  fit("displays the error message if the network has failed to fetch notes", async () => {
+  it("displays the error message if the network has failed to fetch notes", async () => {
     const model = new NotesModel();
     const api = new NotesApi();
     const view = new NotesView(model, api);
@@ -187,6 +185,20 @@ describe("the notes view page", () => {
     fetch.mockImplementationOnce(() => Promise.reject("API is down"));
 
     await view.displayNotesFromApi();
+
+    expect(document.querySelector("#error-message").textContent).toBe(
+      "Oops! Something went wrong"
+    );
+  });
+
+  xit("displays the error message if fetch is unable to create a note", async () => {
+    const model = new NotesModel();
+    const api = new NotesApi();
+    const view = new NotesView();
+
+    fetch.mockImplementationOnce(() => Promise.rejected("API is down"));
+
+    await view.addNewNote();
 
     expect(document.querySelector("#error-message").textContent).toBe(
       "Oops! Something went wrong"

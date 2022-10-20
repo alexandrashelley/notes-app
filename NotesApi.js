@@ -10,7 +10,7 @@ class NotesApi {
       });
   }
 
-  async createNote(note) {
+  async createNote(note, callbackError) {
     const response = await fetch("http://localhost:3000/notes", {
       method: "POST",
       headers: {
@@ -19,8 +19,11 @@ class NotesApi {
       body: JSON.stringify({
         content: note,
       }),
-    });
-
+    })
+    // .catch((error) => {
+    //   callbackError(error);
+    //   console.log(error);
+    // });
     return response.json();
   }
 }
