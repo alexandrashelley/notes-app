@@ -40,16 +40,21 @@
           });
         }
         async createNote(note, callbackError) {
-          const response = await fetch("http://localhost:3000/notes", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              content: note
-            })
-          });
-          return response.json();
+          try {
+            const createNoteResponse = await fetch("http://localhost:3000/notes", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                content: note
+              })
+            });
+            return createNoteResponse.json();
+          } catch (error) {
+            callbackError(error);
+            console.log(error);
+          }
         }
       };
       module.exports = NotesApi2;
@@ -95,7 +100,9 @@
         }
         addNewNote(note) {
           this.model.addNote(note);
-          this.api.createNote(note);
+          return this.api.createNote(note, () => {
+            this.displayError();
+          });
         }
         displayNotesFromApi() {
           return this.api.loadNotes(

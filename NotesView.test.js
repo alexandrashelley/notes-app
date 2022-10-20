@@ -156,7 +156,7 @@ describe("the notes view page", () => {
     const buttonEl = document.querySelector("#add-note-button");
     inputEl.value = "This note was posted";
     buttonEl.click();
-    expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted");
+    expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted", expect.any(Function))
 
     expect(document.querySelectorAll(".note-item").length).toEqual(1);
     expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
@@ -191,12 +191,12 @@ describe("the notes view page", () => {
     );
   });
 
-  xit("displays the error message if fetch is unable to create a note", async () => {
+  it("displays the error message if fetch is unable to create a note", async () => {
     const model = new NotesModel();
     const api = new NotesApi();
-    const view = new NotesView();
+    const view = new NotesView(model, api);
 
-    fetch.mockImplementationOnce(() => Promise.rejected("API is down"));
+    fetch.mockImplementationOnce(() => Promise.reject("API is down"));
 
     await view.addNewNote();
 
