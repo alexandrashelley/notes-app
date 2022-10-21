@@ -101,10 +101,13 @@
           });
         }
         addNewNote(note) {
-          this.model.addNote(note);
-          return this.api.createNote(note, () => {
-            this.displayError();
-          });
+          return this.api.createNote(
+            note,
+            this.model.addNote(note),
+            () => {
+              this.displayError();
+            }
+          );
         }
         displayNotesFromApi() {
           return this.api.loadNotes(

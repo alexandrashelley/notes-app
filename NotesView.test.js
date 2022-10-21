@@ -88,7 +88,7 @@ describe("the notes view page", () => {
 
     expect(document.querySelectorAll(".note-item").length).toBe(2);
     expect(document.querySelector(".note-item")).not.toBeNull();
-  
+
     expect(document.querySelectorAll(".note-item")[0].textContent).toBe(
       "First note"
     );
@@ -156,7 +156,10 @@ describe("the notes view page", () => {
     const buttonEl = document.querySelector("#add-note-button");
     inputEl.value = "This note was posted";
     buttonEl.click();
-    expect(mockApi.createNote).toHaveBeenCalledWith("This note was posted", expect.any(Function))
+    expect(mockApi.createNote).toHaveBeenCalledWith(
+      "This note was posted",
+      expect.any(Function)
+    );
 
     expect(document.querySelectorAll(".note-item").length).toEqual(1);
     expect(document.querySelectorAll(".note-item")[0].textContent).toEqual(
