@@ -1,16 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-   <head>
-      <title>Notes</title>
-   </head>
-   <body>
-      <h1>Take Note!</h1>
-      <div id="main-container">
-         <input type="text" id="note-input" />
-         <button id="add-note-button">Make a note of it</button>
-         <button id="delete-note-button">Clear notes</button>
-       
+  <head>
+    <link rel="stylesheet" href="styling.css" />
+    <title>Take Note</title>
+  </head>
+  
+  <body>
+    <div id="layout">
+      <div id="image-container">
+        <img src="images/writing-gif.gif" alt="writing-gif" id="writing-gif" />
       </div>
-   </body>
-   <script src="bundle.js"></script>
+      <div id="main-container">
+        <h1>Take Note! 📝</h1>
+        <textarea
+          id="note-input"
+          type="text"
+          placeholder="e.g. Water the plants! 🌱"
+        ></textarea>
+        <div id="buttons-container">
+          <button id="add-note-button">Make a note of it</button>
+          <button id="delete-note-button">Clear page</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="bundle.js"></script>
 </html>
