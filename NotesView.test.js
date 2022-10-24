@@ -42,17 +42,9 @@ describe("the notes view page", () => {
 
   it("clicking the button adds a new note", () => {
     const model = new NotesModel();
+    const api = new NotesApi();
 
-    const mockApi = {
-      createNote: () => {
-        return { content: "This note was saved" };
-      },
-      loadNotes: (callback) => {
-        callback(["This note was saved"]);
-      },
-    };
-
-    const view = new NotesView(model, mockApi);
+    const view = new NotesView(model, api);
 
     const inputEl = document.querySelector("#note-input");
     inputEl.value = "This note was added with a button click";

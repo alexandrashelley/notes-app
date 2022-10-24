@@ -10,11 +10,11 @@ class NotesView {
     this.deleteButtonEl = document.querySelector("#delete-note-button");
     this.inputEl = document.querySelector("#note-input");
 
-    this.buttonEl.addEventListener("click", () => {
+    this.buttonEl.addEventListener("click", async () => {
       this.clearNotes();
       this.addNewNote(this.inputEl.value);
       this.inputEl.value = "";
-      this.displayNotes();
+      await this.displayNotesFromApi();
     });
 
     this.deleteButtonEl.addEventListener("click", () => {
@@ -22,8 +22,8 @@ class NotesView {
     });
   }
 
-  displayNotes() {
-    this.model.getNotes().forEach((note) => {
+  displayNotes(noteData) {
+    noteData.forEach((note) => {
       const noteParagraph = document.createElement("p");
       noteParagraph.className = "note-item";
       noteParagraph.textContent = note;
@@ -39,17 +39,16 @@ class NotesView {
   }
 
   addNewNote(note) {
-    return this.api.createNote(note, 
-      this.model.addNote(note), () => {
+    return this.api.createNote(note,
+    () => {
       this.displayError();
     });
   }
 
-  displayNotesFromApi() {
+  async displayNotesFromApi() {
     return this.api.loadNotes(
       (noteData) => {
-        this.model.setNotes(noteData);
-        this.displayNotes();
+        this.displayNotes(noteData);
       },
       () => {
         this.displayError();
