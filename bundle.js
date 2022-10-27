@@ -73,8 +73,8 @@
           this.model = model3;
           this.api = api3;
           this.mainContainerEl = document.querySelector(".flexbox-item-2");
-          this.buttonEl = document.querySelector("#add-note-button");
-          this.deleteButtonEl = document.querySelector("#delete-note-button");
+          this.buttonEl = document.querySelector(".add-note-button");
+          this.deleteButtonEl = document.querySelector(".delete-note-button");
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", async () => {
             this.clearNotes();
@@ -108,12 +108,9 @@
           });
         }
         addNewNote(note) {
-          return this.api.createNote(
-            note,
-            () => {
-              this.displayError();
-            }
-          );
+          return this.api.createNote(note, () => {
+            this.displayError();
+          });
         }
         async displayNotesFromApi() {
           return this.api.loadNotes(
