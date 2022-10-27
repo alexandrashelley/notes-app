@@ -5,7 +5,7 @@ class NotesView {
   constructor(model, api) {
     this.model = model;
     this.api = api;
-    this.mainContainerEl = document.querySelector("#main-container");
+    this.mainContainerEl = document.querySelector(".flexbox-item-2");
     this.buttonEl = document.querySelector("#add-note-button");
     this.deleteButtonEl = document.querySelector("#delete-note-button");
     this.inputEl = document.querySelector("#note-input");
@@ -19,6 +19,7 @@ class NotesView {
 
     this.deleteButtonEl.addEventListener("click", () => {
       this.clearNotes();
+      this.clearErrorMessage();
     });
   }
 
@@ -29,6 +30,12 @@ class NotesView {
       noteParagraph.textContent = note;
       this.mainContainerEl.append(noteParagraph);
     });
+  }
+
+ clearErrorMessage() { const elementToRemove = document.querySelectorAll("#error-message");
+    elementToRemove.forEach((error) => {
+      error.remove();
+    })
   }
 
   clearNotes() {
