@@ -4,22 +4,25 @@
     <link rel="stylesheet" href="styling.css" />
     <title>Take Note</title>
   </head>
-  
+
   <body>
     <div class="flexbox-container">
       <div class="flexbox-item flexbox-item-1">
         <img src="images/writing-gif.gif" alt="writing-gif" id="writing-gif" />
       </div>
       <div class="flexbox-item flexbox-item-2">
-        <h1>Take Note! 📝</h1>
+        <h1>Take Note!</h1>
         <textarea
           id="note-input"
           type="text"
           placeholder="e.g. Water the plants! 🌱"
         ></textarea>
-          <button id="add-note-button">Make a note of it</button>
-          <button id="delete-note-button">Clear page</button>
-    </div>
+        <div class="button-container">
+          <button class="button add-note-button">Make a note of it</button>
+          <div class="space-between-buttons"></div>
+          <button class="button delete-note-button">Clear page</button>
+        </div>
+      </div>
     </div>
   </body>
   <script src="bundle.js"></script>
