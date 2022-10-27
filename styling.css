@@ -23,9 +23,16 @@
 h1 {
   line-height: 6rem;
   text-align: left;
-  margin-top: 10px;
+  margin-bottom: 10px;
+
   font-family: monospace;
   font-size: 160px;
+}
+
+#blurb {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+    margin-top: 8px;
 }
 
 p {
