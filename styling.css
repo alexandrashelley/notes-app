@@ -1,6 +1,6 @@
 .flexbox-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -10,8 +10,10 @@
 }
 
 .flexbox-item-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 100px;
-  align-self: center;
   min-width: 500px;
 }
 
@@ -24,7 +26,7 @@ h1 {
   line-height: 6rem;
   text-align: left;
   margin-bottom: 10px;
-
+  margin-top: 0;
   font-family: monospace;
   font-size: 160px;
 }
@@ -57,13 +59,11 @@ html {
 }
 
 .note {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #aaa;
   padding: 15px;
 }
 
 #error-message {
-  text-align: center;
-  border-bottom: 1px solid #000;
   padding: 10px;
 }
 
