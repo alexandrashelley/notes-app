@@ -1,4 +1,4 @@
-const model = require("./NotesModel");
+const model = require("./notesModel");
 const api = require("./NotesApi");
 
 class NotesView {

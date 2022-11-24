@@ -4,9 +4,9 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // NotesModel.js
-  var require_NotesModel = __commonJS({
-    "NotesModel.js"(exports, module) {
+  // notesModel.js
+  var require_notesModel = __commonJS({
+    "notesModel.js"(exports, module) {
       var NotesModel2 = class {
         constructor() {
           this.notes = [];
@@ -66,7 +66,7 @@
   // NotesView.js
   var require_NotesView = __commonJS({
     "NotesView.js"(exports, module) {
-      var model2 = require_NotesModel();
+      var model2 = require_notesModel();
       var api2 = require_NotesApi();
       var NotesView2 = class {
         constructor(model3, api3) {
@@ -134,7 +134,7 @@
   });
 
   // index.js
-  var NotesModel = require_NotesModel();
+  var NotesModel = require_notesModel();
   var NotesView = require_NotesView();
   var NotesApi = require_NotesApi();
   var model = new NotesModel();
