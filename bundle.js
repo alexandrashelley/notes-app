@@ -4,9 +4,9 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
-  // NotesModel.js
-  var require_NotesModel = __commonJS({
-    "NotesModel.js"(exports, module) {
+  // notesModel.js
+  var require_notesModel = __commonJS({
+    "notesModel.js"(exports, module) {
       var NotesModel2 = class {
         constructor() {
           this.notes = [];
@@ -34,7 +34,7 @@
       var NotesApi2 = class {
         async loadNotes(callback, callbackError) {
           try {
-            await fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+            await fetch("https://notes-server-sigma.vercel.app/notes").then((response) => response.json()).then((data) => {
               callback(data);
             });
           } catch (error) {
@@ -43,7 +43,7 @@
         }
         async createNote(note, callbackError) {
           try {
-            const createNoteResponse = await fetch("http://localhost:3000/notes", {
+            const createNoteResponse = await fetch("https://notes-server-sigma.vercel.app/notes", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -66,7 +66,7 @@
   // NotesView.js
   var require_NotesView = __commonJS({
     "NotesView.js"(exports, module) {
-      var model2 = require_NotesModel();
+      var model2 = require_notesModel();
       var api2 = require_NotesApi();
       var NotesView2 = class {
         constructor(model3, api3) {
@@ -78,7 +78,7 @@
           this.inputEl = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", async () => {
             this.clearNotes();
-            this.addNewNote(this.inputEl.value);
+            await this.addNewNote(this.inputEl.value);
             this.inputEl.value = "";
             await this.displayNotesFromApi();
           });
@@ -134,7 +134,7 @@
   });
 
   // index.js
-  var NotesModel = require_NotesModel();
+  var NotesModel = require_notesModel();
   var NotesView = require_NotesView();
   var NotesApi = require_NotesApi();
   var model = new NotesModel();
