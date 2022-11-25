@@ -34,7 +34,7 @@
       var NotesApi2 = class {
         async loadNotes(callback, callbackError) {
           try {
-            await fetch("https://notes-server-sigma.vercel.app/notesvercel.app/notes").then((response) => response.json()).then((data) => {
+            await fetch("https://notes-server-sigma.vercel.app/notes").then((response) => response.json()).then((data) => {
               callback(data);
             });
           } catch (error) {
