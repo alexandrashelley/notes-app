@@ -34,7 +34,7 @@
       var NotesApi2 = class {
         async loadNotes(callback, callbackError) {
           try {
-            await fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+            await fetch("https://notes-server-sigma.vercel.app/notes").then((response) => response.json()).then((data) => {
               callback(data);
             });
           } catch (error) {
@@ -43,7 +43,7 @@
         }
         async createNote(note, callbackError) {
           try {
-            const createNoteResponse = await fetch("http://localhost:3000/notes", {
+            const createNoteResponse = await fetch("https://notes-server-sigma.vercel.app/notes", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
