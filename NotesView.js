@@ -12,7 +12,7 @@ class NotesView {
 
     this.buttonEl.addEventListener("click", async () => {
       this.clearNotes();
-      this.addNewNote(this.inputEl.value);
+      await this.addNewNote(this.inputEl.value);
       this.inputEl.value = "";
       await this.displayNotesFromApi();
     });
